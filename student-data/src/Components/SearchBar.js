@@ -6,8 +6,8 @@ const SearchBar = React.forwardRef((props,ref) => {
   return (
     < >
     <form onSubmit={submitHandler}>
-      <input type='text' placeholder='Enter student name' name='student' onBlur={changeHandler}/>
-      <button type='submit'>Submit</button>
+      <input type='text' placeholder='Enter student name' name='student' onChange={changeHandler}/>
+      <input type='submit' value='Submit'/>
     </form>
     </>
   )

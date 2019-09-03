@@ -1,0 +1,53 @@
+.header{
+  margin:50px;
+
+}
+.Profile{
+ display: flex;
+ justify-content: center;
+ align-content: center;
+}
+.ReportCard{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+  margin-top:50px;
+}
+.marks{
+ margin:auto;
+}
+.marks table{
+  margin-top: 50px;
+}
+table,tr,td,th{
+  border:1px solid black;
+  border-collapse: collapse;
+  padding:10px;
+}
+input[type=submit]{
+  margin-left:10px;
+  border:1px solid black;
+  padding:7px;
+  border-radius: 3px;
+  background-color: green;
+  font-weight:bold;
+  color:white;
+}
+.tabs{
+  margin-top:10px;
+  margin:auto;
+  background-color: whitesmoke
+
+}
+.marks table td{
+  width:50px;
+}
+.tabs button{
+  margin:10px;
+}
+form input[type=text]{
+  border:1px solid black;
+  padding:7px;
+  border-radius: 3px;
+}

@@ -8,6 +8,8 @@ class Student extends Component {
     this.state = {
        studentName:'',
        dob:'',
+       marks:[],
+       profile:false,
        students : [
         {
           name : 'Kameshwaran',
@@ -89,22 +91,32 @@ class Student extends Component {
   changeHandler = (event) =>{
     this.setState({studentName:event.target.value})
   }
+
   submitHandler = (event) =>{
+
     event.preventDefault()
     const students = this.state.students
+    let flag = 0
     for(let index=0;index<students.length;index++){
       if(students[index].name === this.state.studentName){
-        this.setState({dob:students[index].dateOfBirth})
+        flag=1;
+        this.setState({dob:students[index].dateOfBirth,marks:students[index].marks,profile:true})
       }
     }
+   if(flag==0){
+    this.setState({profile:false})
+   }
   }
   render() {
     const searchBarRefs = {changeHandler:this.changeHandler,submitHandler:this.submitHandler}
     return (
+      <React.Fragment>
       <div className='header'>
-        <SearchBar  ref={searchBarRefs}/>
-        <Profile name={this.state.studentName} dob={this.state.dob}/>
+      <SearchBar  ref={searchBarRefs}/>
       </div>
+       {this.state.profile ? <Profile name={this.state.studentName} dob={this.state.dob} marks={this.state.marks}/>:
+      <h4>No data found</h4>}
+      </React.Fragment>
     )
   }
 }

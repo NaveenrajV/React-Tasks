@@ -1,9 +1,11 @@
 import React from 'react'
+import ReportCard from './ReportCard';
 
 const Profile = (props) =>{
-  const {name,dob}=props
-  console.log(props)
+  const {name,dob,marks}=props
   return (
+    <>
+    <h3>Profile</h3>
     <div className="Profile">
       <table>
         <tbody>
@@ -18,6 +20,8 @@ const Profile = (props) =>{
         </tbody>
       </table>
     </div>
+    <ReportCard marks={marks}/>
+    </>
   )
 }
 
