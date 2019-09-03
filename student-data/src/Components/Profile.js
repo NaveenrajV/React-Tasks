@@ -1,17 +1,19 @@
 import React from 'react'
 
 const Profile = (props) =>{
+  const {name,dob}=props
+  console.log(props)
   return (
     <div className="Profile">
       <table>
         <tbody>
           <tr>
             <th>Name</th>
-            <td></td>
+            <td>{name}</td>
           </tr>
           <tr>
             <th>DOB</th>
-            <td></td>
+            <td>{dob}</td>
           </tr>
         </tbody>
       </table>

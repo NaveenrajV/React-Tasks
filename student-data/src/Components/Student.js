@@ -91,16 +91,19 @@ class Student extends Component {
   }
   submitHandler = (event) =>{
     event.preventDefault()
- 
-    console.log(this.state.studentName)
-    
+    const students = this.state.students
+    for(let index=0;index<students.length;index++){
+      if(students[index].name === this.state.studentName){
+        this.setState({dob:students[index].dateOfBirth})
+      }
+    }
   }
   render() {
     const searchBarRefs = {changeHandler:this.changeHandler,submitHandler:this.submitHandler}
     return (
       <div className='header'>
         <SearchBar  ref={searchBarRefs}/>
-        <Profile details={this.state}/>
+        <Profile name={this.state.studentName} dob={this.state.dob}/>
       </div>
     )
   }
