@@ -59,7 +59,7 @@ class Search extends Component {
  console.log(option)
   option===2 ? this.usernameRef.current.value="" :  this.filterBarRef.current.value=""
  
-  this.setState({filter:false})
+  this.setState({filter:false,reposList:[]})
   }
   render() {
     const refs={usernameChangeHandler:this.usernameChangeHandler,usernameRef:this.usernameRef,reset:this.reset}
