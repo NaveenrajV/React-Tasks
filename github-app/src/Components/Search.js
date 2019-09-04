@@ -18,7 +18,6 @@ class Search extends Component {
   }
 
   usernameChangeHandler = (event) =>{
-
     event.preventDefault()
     const username = this.usernameRef.current.value.trim()
     if(username!==undefined && username.length!==0 ){
@@ -55,11 +54,14 @@ class Search extends Component {
   }
 
   reset = (option) =>{
-  // event.preventDefault()
- console.log(option)
-  option===2 ? this.usernameRef.current.value="" :  this.filterBarRef.current.value=""
- 
-  this.setState({filter:false,reposList:[]})
+    if(option===2){
+      this.usernameRef.current.value=""
+      this.setState({reposList:[]})
+    }
+    else{
+      this.filterBarRef.current.value=""
+      this.setState({filter:false})
+    }
   }
   render() {
     const refs={usernameChangeHandler:this.usernameChangeHandler,usernameRef:this.usernameRef,reset:this.reset}
