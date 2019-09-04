@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-import Student from './Components/Student';
+import Search from './Components/Search';
 import './CSS/Style.css'
+
 function App() {
   return (
     <div className="App">
-      <Student/>
+      <Search/>
     </div>
   );
 }
