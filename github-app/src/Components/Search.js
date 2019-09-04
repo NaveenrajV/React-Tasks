@@ -38,12 +38,18 @@ class Search extends Component {
 
   filterResult = (event) =>{
     const keyword = event.target.value.trim()
+     
     const filteredList = []
     if(keyword !== undefined && keyword.length!==0){
       const reposLists = this.state.reposList
       reposLists.forEach((repo,index) => {
         if(repo.includes(keyword)){
-          filteredList.push(repo)
+
+          let start = repo.search(keyword)
+          let end =  start+keyword.length
+          let li = <li key={index}>{repo.substring(0,start)}<span className="Highlight">{repo.substring(start,end)}</span>{repo.substring(end,repo.length)}</li>
+          filteredList.push(li)
+          // filteredList.push(repo)
         }
       });
 
@@ -71,12 +77,16 @@ class Search extends Component {
         <SearchBar ref={refs}/>
         <FilterBar ref={filterRef}/>
         {
-          this.state.filter ?
-          <SearchResult reposList={this.state.filteredList} />:
+          this.state.filter ?(
+            <ul>
+              {this.state.filteredList}
+            </ul>
+          ):
           <SearchResult reposList={this.state.reposList} />
         }
       </div>
     )
+    // <SearchResult reposList={this.state.filteredList} />
   }
 }
 

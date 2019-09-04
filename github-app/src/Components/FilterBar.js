@@ -6,7 +6,7 @@ const  FilterBar = React.forwardRef((props,ref) =>{
     <div className="filter">
       <form>
       <input type='text' placeholder="Enter some keywords to filter Eg:algo" onChange={filterResult} className="text-input" ref={filterBarRefs}/>
-      <button className="clear" type='reset' onClick={reset}>Clear</button>
+      <button className="clear" type='reset' onClick={()=>reset(1)}>Clear</button>
       </form>
     </div>
   )
