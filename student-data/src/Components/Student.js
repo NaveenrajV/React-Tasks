@@ -10,7 +10,7 @@ class Student extends Component {
        dob:'',
        marks:[],
        profile:false,
-       students : [
+       students :[
         {
           name : 'Kameshwaran',
           school : 'Govt Hr Sec School',
@@ -79,11 +79,48 @@ class Student extends Component {
               }
             }
           ]
+        },
+      
+        {
+          name : 'Arjun',
+          school : 'Govt Hr Sec School',
+          dateOfBirth : '01-06-1993',
+          marks : [
+            {
+              quarterly : {
+                english : 90,
+                maths : 90,
+                physics : 95,
+                chemistry : 98,
+                biology : 90
+              }
+            },
+            {
+              halfYearly : {
+                english : 89,
+                maths : 70,
+                physics : 65,
+                chemistry : 98,
+                biology : 70
+              }
+            },
+            {
+              annual : {
+                english : 88,
+                maths : 98,
+                physics : 95,
+                chemistry : 98,
+                biology : 79
+              }
+            }
+          ]
         }
-      ]      
-    
+      ]
     }
   }
+      
+      
+      
   
 
 
@@ -103,7 +140,7 @@ class Student extends Component {
         this.setState({dob:students[index].dateOfBirth,marks:students[index].marks,profile:true})
       }
     }
-   if(flag==0){
+   if(flag===0){
     this.setState({profile:false})
    }
   }
