@@ -1,5 +1,6 @@
-import React, { useReducer, useEffect } from 'react'
+import React, { useReducer, useEffect, useState } from 'react'
 import axios from 'axios'
+import News from '../News/News';
 
 const initialState = {
   loading: true,
@@ -27,10 +28,11 @@ const reducer = ((state, action) => {
 const Source = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
+  const [selectedSource,setSource] = useState({id:null,name:null})
+
   const API_KEY = "e1dddc105cb747f3bdfd1512ea6801c8"
 
-  const sourcesList = state.posts.sources && state.posts.sources.map(source =>
-    <option key={source.id} value={source.name}>{source.name}</option>)
+  
 
   useEffect(() => {
     axios.get(`https://newsapi.org/v2/sources?apiKey=${API_KEY}`)
@@ -43,7 +45,18 @@ const Source = () => {
   }, [])
 
 
+  const sourcesList = state.posts.sources && state.posts.sources.map(source =>
+    <option key={source.id} data-key={source.id} value={source.id}>{source.name}</option>)
 
+
+  const selectSource =(event) =>{
+    // const id = event.target.getAttribute("data-key")
+    // console.log(event.target.value)
+    const id = event.target.value
+    const post = state.posts.sources.filter((source) => source.id===id)
+    const name = event.target.value
+    setSource({...selectedSource,...post[0]}) 
+  }
 
   return (
     <div>
@@ -51,13 +64,17 @@ const Source = () => {
       {
         state.loading ? "Loading......" :
           <React.Fragment>
-            <label>Source </label>
-            <select>
+            <label>Sources </label>
+            <select onChange={selectSource}>
+              <option key={"none"} data-key={"none"} value={"none"}>Select source</option>
               {sourcesList}
             </select>
           </React.Fragment>
       }
       {state.error ? state.error : null}
+      {selectedSource.id ? <News selectedSource={selectedSource}/> : null}
+      
+      
     </div>
   )
 }
