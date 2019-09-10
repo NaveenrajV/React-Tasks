@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect, useState } from 'react'
 import axios from 'axios'
 import News from '../News/News';
+import './Source.css'
 
 const initialState = {
   loading: true,
@@ -23,14 +24,15 @@ const reducer = ((state, action) => {
         error: "Something went wrong"
       }
   }
+  return state
 })
 
 const Source = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [selectedSource,setSource] = useState({id:null,name:null})
+  const [selectedSource,setSource] = useState({id:null})
 
-  const API_KEY = "e1dddc105cb747f3bdfd1512ea6801c8"
+  const API_KEY = process.env.REACT_APP_NEWS_API_KEY
 
   
 
@@ -50,17 +52,24 @@ const Source = () => {
 
 
   const selectSource =(event) =>{
-    // const id = event.target.getAttribute("data-key")
-    // console.log(event.target.value)
-    const id = event.target.value
-    const post = state.posts.sources.filter((source) => source.id===id)
-    const name = event.target.value
-    setSource({...selectedSource,...post[0]}) 
+
+    // Ref: https://stackoverflow.com/a/47071992
+    const index = event.target.options.selectedIndex
+    const id = event.target.options[index].getAttribute("data-key")
+
+    if(id!=="none"){
+      const post = state.posts.sources.filter((source) => source.id===id)
+      setSource({...selectedSource,...post[0]}) 
+    } else {
+      setSource({id:null,name:null})
+    }
   }
 
-  return (
-    <div>
 
+  return (
+    
+    <div className="Source">
+      {console.log({selectedSource})}
       {
         state.loading ? "Loading......" :
           <React.Fragment>
@@ -72,7 +81,7 @@ const Source = () => {
           </React.Fragment>
       }
       {state.error ? state.error : null}
-      {selectedSource.id ? <News selectedSource={selectedSource}/> : null}
+      {!!selectedSource.id ? <News selectedSource={selectedSource}/> : null}
       
       
     </div>
